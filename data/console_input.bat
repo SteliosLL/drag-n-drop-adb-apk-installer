@@ -25,6 +25,9 @@ cls
 echo %C_SYS%==================================================%C_RESET%
 echo %C_SYS%[CONTROL CONSOLE]  ADB Functions%C_RESET%
 echo %C_SYS%==================================================%C_RESET%
+echo   %C_DEV%Custom Tools:
+echo   %C_DEV%   1%C_RESET% : Drag 'N Drop APK installer and file copier
+echo.
 echo   %C_DEV%Common Functions:
 echo   %C_DEV%   A%C_RESET% : List Installed 3rd-Party Apps
 echo   %C_DEV%   S%C_RESET% : Take Screenshot (Save to PC)
@@ -44,6 +47,8 @@ echo.
 set "CMD="
 set /p "CMD=> "
 
+if /i "!CMD!"=="1" goto DRAG_N_DROP_TOOL
+::
 if /i "!CMD!"=="A" goto SHOW_APPS
 if /i "!CMD!"=="S" goto TAKE_SCREENSHOT
 if /i "!CMD!"=="I" goto SHOW_INFO
@@ -51,6 +56,7 @@ if /i "!CMD!"=="U" goto UNINSTALL_APP
 if /i "!CMD!"=="C" goto CLEAR_DATA
 if /i "!CMD!"=="W" goto WIRELESS_ADB
 if /i "!CMD!"=="R" goto REBOOT_DEVICE
+::
 if /i "!CMD!"=="Oa" goto OPTIMIZE_DEVICE
 if /i "!CMD!"=="Ob" goto OPTIMIZE2_DEVICE
 
@@ -145,4 +151,21 @@ call :CHECK_DEVICE || goto INPUT_LOOP
 echo %C_SYS%[INFO] Rebooting connected device...%C_RESET%
 "%ADB_CMD%" reboot
 echo.
+goto INPUT_LOOP
+
+:OPTIMIZE_DEVICE
+echo.
+call :CHECK_DEVICE || goto INPUT_LOOP
+echo %C_SYS%[INFO] Optimizing device my trimming storage and clearing all app cache...%C_RESET%
+goto INPUT_LOOP
+
+
+:OPTIMIZE2_DEVICE
+echo.
+call :CHECK_DEVICE || goto INPUT_LOOP
+goto INPUT_LOOP
+
+:DRAG_N_DROP_TOOL
+echo.
+start .\data\watcher.bat
 goto INPUT_LOOP
