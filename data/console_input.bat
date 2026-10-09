@@ -23,15 +23,20 @@ title Control Console
 :SHOW_MENU
 cls
 echo %C_SYS%==================================================%C_RESET%
-echo %C_SYS%[CONTROL CONSOLE] ADB Functions%C_RESET%
+echo %C_SYS%[CONTROL CONSOLE]  ADB Functions%C_RESET%
 echo %C_SYS%==================================================%C_RESET%
-echo   %C_DEV%A%C_RESET% : List Installed 3rd-Party Apps
-echo   %C_DEV%S%C_RESET% : Take Screenshot (Save to PC)
-echo   %C_DEV%I%C_RESET% : Show Device Info (Battery, IP, Storage)
-echo   %C_DEV%U%C_RESET% : Uninstall an App
-echo   %C_DEV%C%C_RESET% : Clear App Data / Cache
-echo   %C_DEV%W%C_RESET% : Enable Wireless ADB (Port 5555)
-echo   %C_DEV%R%C_RESET% : Reboot Device
+echo   %C_DEV%Common Functions:
+echo   %C_DEV%   A%C_RESET% : List Installed 3rd-Party Apps
+echo   %C_DEV%   S%C_RESET% : Take Screenshot (Save to PC)
+echo   %C_DEV%   I%C_RESET% : Show Device Info (Battery, IP, Storage)
+echo   %C_DEV%   U%C_RESET% : Uninstall an App
+echo   %C_DEV%   C%C_RESET% : Clear App Data / Cache
+echo   %C_DEV%   W%C_RESET% : Enable Wireless ADB (Port 5555)
+echo   %C_DEV%   R%C_RESET% : Reboot Device
+echo.
+echo   %C_DEV%Advanced Functions:
+echo   %C_DEV%   Oa%C_RESET% : Optimize (TRIM + Clear app storage/cache)
+echo   %C_DEV%   Ob%C_RESET% : Optimize (TRIM + Clear app cache)
 echo %C_SYS%==================================================%C_RESET%
 echo.
 
@@ -46,6 +51,8 @@ if /i "!CMD!"=="U" goto UNINSTALL_APP
 if /i "!CMD!"=="C" goto CLEAR_DATA
 if /i "!CMD!"=="W" goto WIRELESS_ADB
 if /i "!CMD!"=="R" goto REBOOT_DEVICE
+if /i "!CMD!"=="Oa" goto OPTIMIZE_DEVICE
+if /i "!CMD!"=="Ob" goto OPTIMIZE2_DEVICE
 
 if not "!CMD!"=="" echo %C_ERR%Unknown command.%C_RESET%
 echo.
