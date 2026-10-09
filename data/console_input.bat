@@ -20,8 +20,8 @@ if not exist "%ADB_CMD%" set "ADB_CMD=adb"
 
 title Control Console
 
-:SHOW_MENU
 cls
+:SHOW_MENU
 echo %C_SYS%==================================================%C_RESET%
 echo %C_SYS%[CONTROL CONSOLE]  ADB Functions%C_RESET%
 echo %C_SYS%==================================================%C_RESET%
@@ -36,6 +36,10 @@ echo   %C_DEV%   U%C_RESET% : Uninstall an App
 echo   %C_DEV%   C%C_RESET% : Clear App Data / Cache
 echo   %C_DEV%   W%C_RESET% : Enable Wireless ADB (Port 5555)
 echo   %C_DEV%   R%C_RESET% : Reboot Device
+echo.
+echo   %C_DEV%Console commands:
+echo   %C_DEV%   HELP%C_RESET% : Show available functions
+echo   %C_DEV%   CLEAR%C_RESET% : Clear terminal
 echo.
 echo   %C_DEV%Advanced Functions:
 echo   %C_DEV%   Oa%C_RESET% : Optimize (TRIM + Clear app storage/cache)
@@ -56,6 +60,9 @@ if /i "!CMD!"=="U" goto UNINSTALL_APP
 if /i "!CMD!"=="C" goto CLEAR_DATA
 if /i "!CMD!"=="W" goto WIRELESS_ADB
 if /i "!CMD!"=="R" goto REBOOT_DEVICE
+::
+if /i "!CMD!"=="HELP" goto HELP
+if /i "!CMD!"=="CLEAR" goto CLEAR
 ::
 if /i "!CMD!"=="Oa" goto OPTIMIZE_DEVICE
 if /i "!CMD!"=="Ob" goto OPTIMIZE2_DEVICE
@@ -185,3 +192,12 @@ goto INPUT_LOOP
 echo.
 start .\data\watcher.bat
 goto INPUT_LOOP
+
+:HELP
+echo.
+goto SHOW_MENU
+
+:CLEAR
+echo.
+cls
+goto SHOW_MENU
