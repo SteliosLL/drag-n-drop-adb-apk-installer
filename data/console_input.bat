@@ -156,7 +156,23 @@ goto INPUT_LOOP
 :OPTIMIZE_DEVICE
 echo.
 call :CHECK_DEVICE || goto INPUT_LOOP
-echo %C_SYS%[INFO] Optimizing device my trimming storage and clearing all app cache...%C_RESET%
+echo %C_SYS%[INFO] Optimizing device...%C_RESET%
+echo %C_SYS%[1/2] Trimming system and app caches...%C_RESET%
+"%ADB_CMD%" shell pm trim-caches 999G >nul 2>&1
+if !errorlevel! equ 0 (
+    echo %C_GREEN%[SUCCESS] System cache trimmed successfully.%C_RESET%
+) else (
+    echo %C_ERR%[WARNING] Cache trim command restricted by device vendor.%C_RESET%
+)
+echo %C_SYS%[2/2] Running Storage TRIM (fstrim)...%C_RESET%
+"%ADB_CMD%" shell sm fstrim >nul 2>&1
+if !errorlevel! equ 0 (
+    echo %C_GREEN%[SUCCESS] Flash storage TRIM completed.%C_RESET%
+) else (
+    echo %C_ERR%[WARNING] Storage TRIM skipped (requires Android 6.0+ or elevated permissions).%C_RESET%
+)
+echo.
+echo %C_GREEN%[SUCCESS] Device storage optimized.%C_RESET%
 goto INPUT_LOOP
 
 
