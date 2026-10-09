@@ -39,7 +39,7 @@ echo   %C_DEV%   R%C_RESET% : Reboot Device
 echo.
 echo   %C_DEV%Advanced Functions:
 echo   %C_DEV%   Oa%C_RESET% : Optimize (TRIM + Clear app storage/cache)
-echo   %C_DEV%   Ob%C_RESET% : Optimize (TRIM + Clear app cache)
+echo   %C_DEV%   Ob%C_RESET% : Optimize (TRIM + Clear ONLY app cache)
 echo %C_SYS%==================================================%C_RESET%
 echo.
 

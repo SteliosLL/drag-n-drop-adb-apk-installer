@@ -45,7 +45,8 @@ cls
 echo %C_SYS%=========================================================%C_RESET%
 echo %C_RESET% %C_APK%    --DRAG 'N DROP APK INSTALLER AND FILE COPIER--
 echo.
-echo %C_RESET%   Root Dir: %ROOT_DIR%
+echo %C_RESET%   Put APKs to install in: %C_GRAY%.\apks_to_install
+echo %C_RESET%   Put files to copy in: %C_GRAY%.\files_to_copy
 echo %C_SYS%=========================================================%C_RESET%
 echo.
 
